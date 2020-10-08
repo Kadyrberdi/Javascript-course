@@ -5,5 +5,5 @@ var deposit;
 var mission;
 var period;
 
-alert("This is my first lesson Js");
+alert("This is my first lesson Js.");
 console.log("Hello World!");
