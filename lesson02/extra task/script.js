@@ -1,6 +1,5 @@
 let num = 266219;
 let reducer = (accumulator, currentValue) => accumulator * currentValue;
-//let multiplication = num.split('').reduce(reducer);
-//let result = multiplication ** 3;
-//console.log(result.toString().substring(0, 2));
-console.log((num.toString().split('').reduce(reducer) ** 3).toString().substring(0, 2));
+let multiplication = num.toString().split('').reduce(reducer);
+console.log(multiplication);
+console.log((multiplication ** 3).toString().substring(0, 2));
