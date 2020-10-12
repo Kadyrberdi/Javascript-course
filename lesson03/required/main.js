@@ -1,5 +1,5 @@
 'use strict';
-const money = 200;
+let money = 200;
 const income = "freelance";
 const addExpenses =
   "Квартплата, коммуналка, интернет, продукты, развлечение, еда вне дома, шоппинг";
@@ -18,4 +18,5 @@ console.log(addExpenses.toLowerCase().split('').join(''));
 const budgetDay = money / 30;
 console.log(budgetDay);
 
-const money = 
+
+money = confirm(“Ваш месячный доход?”);
