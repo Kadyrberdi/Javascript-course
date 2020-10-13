@@ -1,5 +1,4 @@
 'use strict';
-let money = 200;
 const income = "freelance";
 let addExpenses =
   "Квартплата, коммуналка, интернет, продукты, развлечение, еда вне дома, шоппинг";
@@ -7,7 +6,6 @@ let deposit = false;
 let mission = 1000;
 let period = 5;
 
-console.log(typeof money);
 console.log(typeof income);
 console.log(typeof deposit);
 console.log(addExpenses.length);
@@ -15,12 +13,9 @@ console.log("Период равен " + period + " месяцев" );
 console.log('Цель заработать ' + mission + " долларов");
 console.log(addExpenses.toLowerCase().split('').join(''));
 
-let budgetDay = money / 30;
-console.log(budgetDay);
-
 //Отсюда начинается 3-ый урок
 //Спрашиваем у пользователя месячный доход
-money = +prompt('Ваш месячный доход?');
+let money = +prompt('Ваш месячный доход?');
 console.log('Ваша зарплата: ' + money);
 
 //Спрашиваем у пользователя на что потрачивает деньги
@@ -50,7 +45,7 @@ let countMission = Math.ceil(mission / budgetMonth);
 console.log('Цель будет достигнуто за: ' + countMission + ' месяцев');
 
 //Вычисляем бюджет пользователя на день, учитывая бюджет на месяц, а не месячный доход
-budgetDay = Math.floor(budgetMonth / 30);
+let budgetDay = Math.floor(budgetMonth / 30);
 console.log('Бютджет на день: ' + budgetDay);
 
 // условия
