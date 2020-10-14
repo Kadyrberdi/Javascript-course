@@ -19,7 +19,7 @@ let expenses2 = prompt('Введите обязательную статью р�
 let amount2 = +prompt('Во сколько это обойдется?', 100);
 
 //Этот Функция должен возвращать сумму всех обязательных расходов за месяц
-const getExpensesMonth = function() {
+let getExpensesMonth = function() {
   return amount1 + amount2;
 };
 getExpensesMonth();
@@ -46,6 +46,7 @@ console.log('Cрок достижения цели в месяцах: ' + getTar
 let budgetDay = Math.floor(accumulatedMonth / 30);
 console.log('Бюджет на день: ' + budgetDay);
 
+// Статус уровень дохода:
 let getStatusIncome = function() {
   if (money >= 1200) {
     return 'У вас высокий уровень дохода';
