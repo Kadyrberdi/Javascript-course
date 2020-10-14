@@ -9,7 +9,7 @@ let mission = 1000;
 console.log(typeof mission);
 
 //Спрашиваем у пользователя месячный доход
-let money = +prompt('Ваш месячный доход?', 800);
+let money = +prompt('Ваш месячный доход?', 50000);
 console.log(typeof money);
 
 //Спрашиваем у пользователя на что потрачивает деньги
@@ -22,9 +22,9 @@ console.log('депозит: ' + deposit);
 
 //Спрашиваем у пользователя на что он потратил и сколько потратил
 let expenses1 = prompt('Введите обязательную статью расходов?');
-let amount1 = +prompt('Во сколько это обойдется?', 500);
+let amount1 = +prompt('Во сколько это обойдется?', 5000);
 let expenses2 = prompt('Введите обязательную статью расходов?');
-let amount2 = +prompt('Во сколько это обойдется?', 100);
+let amount2 = +prompt('Во сколько это обойдется?', 19000);
 
 //Этот Функция должен возвращать сумму всех обязательных расходов за месяц
 let getExpensesMonth = function() {
@@ -51,23 +51,21 @@ console.log('Cрок достижения цели в месяцах: ' + getTar
 
 
 //Вычисляем бюджет пользователя на день, учитывая бюджет на месяц, а не месячный доход
-let getStatusIncome = function() {
-return Math.floor(accumulatedMonth / 30);
-}
-console.log('Бюджет на день: ' + getStatusIncome());
+let budgetDay = Math.floor(accumulatedMonth / 30);
+console.log('Бюджет на день: ' + budgetDay);
 
 // Статус уровень дохода:
-let status = function() {
-  if (money >= 1200) {
+let getStatusIncome = function() {
+  if (budgetDay >= 1200) {
     return 'У вас высокий уровень дохода';
-  } else if ( 600 < money && money < 1200) {
+  } else if ( 600 < budgetDay && budgetDay < 1200) {
     return 'У вас средний уровень дохода';
-  } else if (0 < money && money <= 600) {
+  } else if (0 < budgetDay && budgetDay <= 600) {
     return 'К сожалению у вас уровень дохода ниже среднего';
   } else {
     return 'Что то пошло не так';
   }
 }
 
-console.log('Статус уровень дохода: ' + status());
+console.log('Статус уровень дохода: ' + getStatusIncome());
 
