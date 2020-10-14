@@ -48,7 +48,7 @@ console.log('Цель будет достигнуто за: ' + countMission + '
 let budgetDay = Math.floor(budgetMonth / 30);
 console.log('Бютджет на день: ' + budgetDay);
 
-// условия
+// Статус уровень дохода:
 if (budgetMonth >= 1200) {
   console.log('У вас высокий уровень дохода');
 } else if ( 600 < budgetMonth && budgetMonth < 1200) {
