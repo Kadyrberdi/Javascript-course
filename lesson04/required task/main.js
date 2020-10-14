@@ -1,5 +1,10 @@
 'use strict';
 
+//подроботка
+const income = "freelance";
+console.log(typeof income);
+
+//цель
 let mission = 1000;
 console.log(typeof mission);
 
@@ -7,10 +12,13 @@ console.log(typeof mission);
 let money = +prompt('Ваш месячный доход?', 800);
 console.log(typeof money);
 
-
 //Спрашиваем у пользователя на что потрачивает деньги
 let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'пример: "Квартплата, проездной, кредит"');
 console.log('Именно за это вы потратили деньги: ' + addExpenses);
+
+//Спрашиваем у пользователя есть ли у него депозить
+let deposit = confirm('Есть ли у вас депозит в банке?');
+console.log('депозит: ' + deposit);
 
 //Спрашиваем у пользователя на что он потратил и сколько потратил
 let expenses1 = prompt('Введите обязательную статью расходов?');
@@ -43,11 +51,13 @@ console.log('Cрок достижения цели в месяцах: ' + getTar
 
 
 //Вычисляем бюджет пользователя на день, учитывая бюджет на месяц, а не месячный доход
-let budgetDay = Math.floor(accumulatedMonth / 30);
-console.log('Бюджет на день: ' + budgetDay);
+let getStatusIncome = function() {
+return Math.floor(accumulatedMonth / 30);
+}
+console.log('Бюджет на день: ' + getStatusIncome());
 
 // Статус уровень дохода:
-let getStatusIncome = function() {
+let status = function() {
   if (money >= 1200) {
     return 'У вас высокий уровень дохода';
   } else if ( 600 < money && money < 1200) {
@@ -59,5 +69,5 @@ let getStatusIncome = function() {
   }
 }
 
-console.log('Статус уровень дохода: ' + getStatusIncome());
+console.log('Статус уровень дохода: ' + status());
 
