@@ -25,17 +25,24 @@ let income = "freelance",
 let start = function() {
   do {
     money = +prompt('Ваш месячный доход?');
-  } while (!isNumber(money))
+  } while (!isNumber(money));
 };
 start();
 
 //Спрашиваем у пользователя на что он потратил и сколько потратил
 let getExpensesMonth = function() {
   let sum = 0;
+  let amount = 0;
+
   for (let i = 0; i < 2; i++) {
     expenses[i] = prompt('Введите обязательную статью расходов?');
-    sum += +prompt('Во сколько это обойдется?');
+    do {
+      amount = +prompt('Во сколько это обойдется?')
+      } while (!isNumber(amount));
+      
+      sum += amount;
   }
+  console.log(expenses);
   return sum;
 };
 
@@ -75,6 +82,11 @@ let getStatusIncome = function() {
   }
 }
 
+// обработчики событий 
+//....
+
+
+
 //выводы в консоль :
 console.log(typeof income);
 console.log(typeof mission);
@@ -82,12 +94,11 @@ console.log(typeof money);
 console.log(typeof period);
 console.log(typeof deposit);
 console.log(addExpenses.toLowerCase().split(','));
-console.log('Ваша зарплата : ', money);
-console.log('обязательные статьи расходов: ', expenses);
+console.log('Ваша зарплата : ' + money);
 console.log('Расходы за месяц: ' + expensesAmount);
-console.log(typeof expensesAmount);
 console.log('суммы накоплений за месяц: ' + accumulatedMonth);
 console.log('Цель будет достигнута за ' + targetMonth + ' месяца');
+getTargetMonth();
 console.log('Бюджет на день: ' + budgetDay);
 console.log('Статус уровень дохода: ' + getStatusIncome());
 
