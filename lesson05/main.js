@@ -1,74 +1,62 @@
 'use strict';
 
+// вспомогательная функция
 let isNumber = function(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n)
-};
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
-//подроботка
-const income = "freelance";
-console.log(typeof income);
+// переменные
 
-//цель
-let mission = 100000;
-console.log(typeof mission);
+let income = "freelance",  
+    mission = 100000,
+    period = 5,
+    money,
+    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'пример: "Квартплата, проездной, кредит"'), 
+    deposit = confirm('Есть ли у вас депозит в банке?'), 
+    expenses = [],
+    expensesAmount,
+    accumulatedMonth,
+    targetMonth,
+    budgetDay;
 
-
-//Спрашиваем у пользователя на что потрачивает деньги
-let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'пример: "Квартплата, проездной, кредит"');
-console.log('Именно за это вы потратили деньги: ' + addExpenses.toLowerCase().split(','));
+//функции 
 
 //Спрашиваем у пользователя месячный доход
-let money;
-
 let start = function() {
   do {
-    money = prompt('Ваш месячный доход?');
+    money = +prompt('Ваш месячный доход?');
   } while (!isNumber(money));
-  return money;
 };
 start();
-console.log('Ваш месячный доход: ', money);
-console.log(typeof money);
-
-
-//Спрашиваем у пользователя есть ли у него депозить
-let deposit = confirm('Есть ли у вас депозит в банке?');
-console.log('депозит: ' + deposit);
 
 //Спрашиваем у пользователя на что он потратил и сколько потратил
-//let expenses1, expenses2;
-let expenses = [];
-
-//Этот Функция должен возвращать сумму всех обязательных расходов за месяц
 let getExpensesMonth = function() {
   let sum = 0;
+  let amount = 0;
+
   for (let i = 0; i < 2; i++) {
     expenses[i] = prompt('Введите обязательную статью расходов?');
-
-    sum += +prompt('Во сколько это обойдется?');
-
+    do {
+      amount = +prompt('Во сколько это обойдется?')
+      } while (!isNumber(amount));
+      
+      sum += amount;
   }
-  console.log('обязательные статьи расходов: ', expenses);
+  console.log(expenses);
   return sum;
 };
 
-let expensesAmount = getExpensesMonth();
-
-console.log('Расходы за месяц: ' + expensesAmount);
-console.log(typeof expensesAmount);
-
+expensesAmount = getExpensesMonth();
 
 //Этот Функция и переменный должен возвращать сумму накоплений за месяц
 let getAccumulatedMonth = function() {
   return money - expensesAmount;
 }
 
-let accumulatedMonth = getAccumulatedMonth();
-console.log('суммы накоплений за месяц: ' + accumulatedMonth);
-
+accumulatedMonth = getAccumulatedMonth();
 
 //Этот функция подсчитывает за какой период будет достигнута цель
-let targetMonth = Math.ceil(mission / accumulatedMonth);
+targetMonth = Math.ceil(mission / accumulatedMonth);
 
 let getTargetMonth = function() {
   if (targetMonth > 0) {
@@ -77,14 +65,9 @@ let getTargetMonth = function() {
     console.log('Цель не будет достигнута');
   }
 };
-//getTargetMonth();
-console.log('Цель будет достигнута за ' + targetMonth + ' месяца');
 
-
-
-//Вычисляем бюджет пользователя на день, учитывая бюджет на месяц, а не месячный доход.
-let budgetDay = Math.floor(accumulatedMonth / 30);
-console.log('Бюджет на день: ' + budgetDay);
+//Вычисляем бюджет пользователя на день, учитывая бюджет на месяц
+budgetDay = Math.floor(accumulatedMonth / 30);
 
 // Статус уровень дохода:
 let getStatusIncome = function() {
@@ -99,5 +82,25 @@ let getStatusIncome = function() {
   }
 }
 
+// обработчики событий 
+//....
+
+
+
+//выводы в консоль :
+console.log(typeof income);
+console.log(typeof mission);
+console.log(typeof money);
+console.log(typeof period);
+console.log(typeof deposit);
+console.log(addExpenses.toLowerCase().split(','));
+console.log('Ваша зарплата : ' + money);
+console.log('Расходы за месяц: ' + expensesAmount);
+console.log('суммы накоплений за месяц: ' + accumulatedMonth);
+console.log('Цель будет достигнута за ' + targetMonth + ' месяца');
+getTargetMonth();
+console.log('Бюджет на день: ' + budgetDay);
 console.log('Статус уровень дохода: ' + getStatusIncome());
+
+
 
