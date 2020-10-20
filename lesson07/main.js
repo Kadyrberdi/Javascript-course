@@ -59,26 +59,30 @@ const appData = {
   },
 
   getTargetMonth: function() { 
-    appData.targetMonth = Math.ceil(appData.mission / appData.accumulatedMonth);
+    appData.targetMonth = Math.ceil(appData.mission / appData.budgetMonth);
   },
 
   getStatusIncome: function() {
-  if (appData.budgetDay >= 1200) {
-    return 'У вас высокий уровень дохода';
-  } else if ( 600 < appData.budgetDay && appData.budgetDay < 1200) {
-    return 'У вас средний уровень дохода';
-  } else if (0 < appData.budgetDay && appData.budgetDay <= 600) {
-    return 'К сожалению у вас уровень дохода ниже среднего';
-  } else {
-    return 'Что то пошло не так';
-  }
-}
+    if (appData.budgetDay >= 1200) {
+      return 'У вас высокий уровень дохода';
+    } else if ( 600 < appData.budgetDay && appData.budgetDay < 1200) {
+      return 'У вас средний уровень дохода';
+    } else if (0 < appData.budgetDay && appData.budgetDay <= 600) {
+      return 'К сожалению у вас уровень дохода ниже среднего';
+    } else {
+      return 'Что то пошло не так';
+    }
+  },
 };
 
 appData.asking();
+appData.getExpensesMonth();
+appData.getBudget();
+appData.getTargetMonth();
 
 
 //выводы в консоль :
+console.log(appData.expenses);
 console.log('Расходы за месяц: ' + appData.expensesMonth);
 console.log('Цель будет достигнута за ' + appData.targetMonth + ' месяца');
 console.log(appData.getStatusIncome());
