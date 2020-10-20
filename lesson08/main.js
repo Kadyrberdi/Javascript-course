@@ -9,7 +9,7 @@ let money;
 //Спрашиваем у пользователя месячный доход
 let start = function() {
   do {
-    money = +prompt('Ваш месячный доход?');
+    money = +prompt('Ваш месячный доход?', 40000);
   } while (!isNumber(money));
 };
 start();
@@ -21,6 +21,8 @@ const appData = {
   expenses: {},
   addExpenses: [],
   deposit: false,
+  percentDeposit: 0,
+  moneyDeposit: 0,
   mission: 60000,
   period: 5,
   accumulatedMonth: [],
@@ -30,6 +32,13 @@ const appData = {
   expensesMonth: 0,
   targetMonth: [],
   asking: function() {
+
+    if (confirm('Есть ли у вас дополнительный заработка?')) {
+      let itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
+      let cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000);
+      appData.income[itemIncome] = cashIncome;
+    }
+
     let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'пример: "Квартплата, проездной, кредит"');
         appData.addExpenses = addExpenses.toLowerCase().split(',');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
@@ -73,22 +82,32 @@ const appData = {
       return 'Что то пошло не так';
     }
   },
+
+  getInfoDeposit: function() {
+    if(appData.deposit) {
+      appData.percentDeposit = prompt('Какой годовой процент?', '15');
+      appData.moneyDeposit = prompt('Какая сумма заложена?', 20000);
+    }
+  },
+
+  calcSavedMoney: function(){
+    return appData.budgetMonth * appData.period;
+  }
 };
 
 appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
 appData.getTargetMonth();
-
+appData.getInfoDeposit();
 
 //выводы в консоль :
-console.log(appData.expenses);
 console.log('Расходы за месяц: ' + appData.expensesMonth);
 console.log('Цель будет достигнута за ' + appData.targetMonth + ' месяца');
 console.log(appData.getStatusIncome());
 
-for (let item in appData) {
+/* for (let item in appData) {
   console.log('Свойства: ' + item + ', его значение - ' + appData[item]);
-}
+} */
 
-
+console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcSavedMoney());
