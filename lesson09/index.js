@@ -13,7 +13,7 @@ targetAmount = document.querySelector('.target-amount'),
 period = document.querySelector('.period-select'),
 buttonPlusOne = document.getElementsByTagName('button')[0],
 buttonPlusTwo = document.getElementsByTagName('button')[1],
-calculate = document.querySelector('#start');
+calculate = document.getElementById('start');
 
 //result
 let budgetMonth = document.getElementsByClassName('budget_month-value'),
