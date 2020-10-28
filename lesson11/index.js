@@ -61,8 +61,6 @@ const appData = {
     }
     appData.budget = +salaryAmount.value;
 
-    appData.changeRange();
-
     appData.getExpenses();
     appData.getAddExpenses();
 
@@ -198,15 +196,15 @@ const appData = {
   changeRange: function(event) {
     console.log(event.type);
     console.log(event.target.value);
-   // appData.periodAmount.innerHTML = event.target.value;
+    //appData.periodAmount.innerHTML = event.target.value;
   }
 };
 
 start.addEventListener('click', appData.start);
+//start.addEventListener('click', appData.showResult);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('change', appData.changeRange);
-
 //appData.getInfoDeposit();
 //выводы в консоль :
 /* console.log('Расходы за месяц: ' + appData.expensesMonth);
