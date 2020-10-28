@@ -15,6 +15,7 @@ depositAmount = document.querySelector('.deposit-amount'),
 depositPercent = document.querySelector('.deposit-percent'),
 targetAmount = document.querySelector('.target-amount'),
 periodSelect = document.querySelector('.period-select'),
+periodAmount = document.querySelector('.period-amount'),
 btnPlus = document.getElementsByTagName('button'),
 incomePlus = btnPlus[0],
 expensesPlus = btnPlus[1],
@@ -59,6 +60,8 @@ const appData = {
       return
     }
     appData.budget = +salaryAmount.value;
+
+    appData.changeRange();
 
     appData.getExpenses();
     appData.getAddExpenses();
@@ -190,13 +193,19 @@ const appData = {
 
   calcPeriod: function(){
     return appData.budgetMonth * periodSelect.value;
+  },
+
+  changeRange: function(event) {
+    console.log(event.type);
+    console.log(event.target.value);
+    appData.periodAmount.innerHTML = event.target.value;
   }
 };
 
 start.addEventListener('click', appData.start);
-//start.addEventListener('click', appData.showResult);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
+periodSelect.addEventListener('change', appData.changeRange);
 
 //appData.getInfoDeposit();
 //выводы в консоль :
