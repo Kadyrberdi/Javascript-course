@@ -198,7 +198,7 @@ const appData = {
   changeRange: function(event) {
     console.log(event.type);
     console.log(event.target.value);
-    appData.periodAmount.innerHTML = event.target.value;
+   // appData.periodAmount.innerHTML = event.target.value;
   }
 };
 
