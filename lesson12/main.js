@@ -3,9 +3,12 @@
 const todoControl = document.querySelector('.todo-control'),
 headerInput = document.querySelector('.header-input'),
 todoList = document.querySelector('.todo-list'),
-todoCompleted = document.querySelector('.todo-completed');
+todoCompleted = document.querySelector('.todo-completed'),
+todoRemoved = document.querySelector('.todo-removed');
 
-const todoData = [];
+
+let todoData = [];
+
 
 const render = function() {
 
@@ -15,17 +18,12 @@ const render = function() {
   todoData.forEach(function(item) {
     const li = document.createElement('li');
     li.classList.add('todo-item');
-    
-    if (item.value != '') { 
+
     li.innerHTML = '<span class="text-todo">' + item.value + '</span>' +
     '<div class="todo-buttons">' + 
         '<button class="todo-remove"></button>' + 
         '<button class="todo-complete"></button>' + 
     '</div>';
-  } else {
-    render();
-  }
-    
 
     if (item.completed) {
       todoCompleted.append(li);
@@ -33,27 +31,56 @@ const render = function() {
       todoList.append(li);
     }
 
+    /* if (item.removed) {
+     todoList.splice(li);
+    }  */
+
   const btnTodoComplete = li.querySelector('.todo-complete');
 
     btnTodoComplete.addEventListener('click', function() {
       item.completed = !item.completed;
+      localStorage.setItem('todo', JSON.stringify(todoData));
       render();
   });
 
+  /* const btnTodoRemove = li.querySelector('.todo-remove');
+
+  btnTodoRemove.addEventListener('click', function() {
+    if (item.removed === true) {
+      todoList.splice(li);
+    }
+
+      localStorage.setItem('todo', JSON.stringify(todoData));
+      render();
+  }); */
+
   });
+
 };
+
+
 
 todoControl.addEventListener('submit', function(event) {
   event.preventDefault();
 
   const newTodo = {
     value: headerInput.value,
-    completed: false
+    completed: false,
+    removed: false
   };
 
+  if (headerInput.value !== '') { 
   todoData.push(newTodo);
+  } 
 
+  localStorage.setItem('todo', JSON.stringify(todoData));
+  headerInput.value = '';
   render();
 });
+
+if (localStorage.getItem('todo')) {
+  todoData = JSON.parse(localStorage.getItem('todo'));
+  render();
+}
 
   render();
