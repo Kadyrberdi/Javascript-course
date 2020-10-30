@@ -31,10 +31,6 @@ const render = function() {
       todoList.append(li);
     }
 
-    /* if (item.removed) {
-     todoList.splice(li);
-    }  */
-
   const btnTodoComplete = li.querySelector('.todo-complete');
 
     btnTodoComplete.addEventListener('click', function() {
@@ -43,16 +39,15 @@ const render = function() {
       render();
   });
 
-  /* const btnTodoRemove = li.querySelector('.todo-remove');
+  const btnTodoRemove = li.querySelector('.todo-remove');
 
   btnTodoRemove.addEventListener('click', function() {
-    if (item.removed === true) {
-      todoList.splice(li);
-    }
+    //todoData = (todoData.indexOf(item)); // наработки
+    todoData.splice(todoData.indexOf(item), 1); // изменяем массив возвращая первый индекс
 
       localStorage.setItem('todo', JSON.stringify(todoData));
       render();
-  }); */
+  }); 
 
   });
 
