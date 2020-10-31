@@ -19,7 +19,9 @@ periodAmount = document.querySelector('.period-amount'),
 btnPlus = document.getElementsByTagName('button'),
 incomePlus = btnPlus[0],
 expensesPlus = btnPlus[1],
-start = document.getElementById('start');
+start = document.getElementById('start'),
+restart = document.getElementById('cancel'),
+input = document.getElementsByClassName('input');
 
 //result
 let budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
@@ -54,13 +56,14 @@ const appData = {
   budgetDay: 0,
   budgetMonth: 0,
   targetMonth: [],
-  start: function() {
+  start: function() { 
     if (salaryAmount.value === '') {
       alert('Ошибка, поле "Месяцный доход" должно быть заполнено!');
       return
     }
-    appData.budget = +salaryAmount.value;
-
+    appData.budget = +salaryAmount.value; //зарплата  // работает
+    appData.getBudget();
+    
     appData.getExpenses();
     appData.getAddExpenses();
 
@@ -69,15 +72,14 @@ const appData = {
     //appData.getIncome();
     appData.getAddIncome();
 
-    appData.getBudget();
 
     appData.showResult();
   
   },
   showResult: function() {
-    budgetMonthValue.value = appData.budgetMonth;
-    budgetDayValue.value = appData.budgetDay;
-    expensesMonthValue.value = appData.expensesMonth;
+    budgetMonthValue.value = appData.budgetMonth; //Доход за месяц
+    budgetDayValue.value = appData.budgetDay; //Дневной бюджет
+    expensesMonthValue.value = appData.expensesMonth; //Расход за месяц
     additionalExpensesValue.value = appData.addExpenses.join(', ');
     additionalIncomeValue.value = appData.addIncome.join(', ');
     targetMonthValue.value = Math.ceil(appData.getTargetMonth());
@@ -98,6 +100,8 @@ const appData = {
       let cashExpenses = item.querySelector('.expenses-amount').value;
       if (itemExpenses !== '' && cashExpenses !== '') {
         appData.expenses[itemExpenses] = cashExpenses;
+        console.log('cashExpenses: ', cashExpenses);
+        console.log('appData.expenses: ', appData.expenses);
       }
     });
   },
@@ -128,14 +132,6 @@ const appData = {
       }
     }); 
 
-    /* if (confirm('Есть ли у вас дополнительный заработка?')) {
-      let itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
-      let cashIncome = 0;
-      do {
-        cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000);
-      } while (!isNumber(cashIncome));
-      appData.income[itemIncome] = cashIncome;
-    } */
     for (let key in appData.income) {
       appData.incomeMonth += +appData.income[key]; 
     }
@@ -148,19 +144,16 @@ const appData = {
       }
     });
   },
-  
-  getExpensesMonth: function() {
-    let sum = 0;
-    for (let item in appData.expenses) {
-      sum += appData.expenses[item];
+  //Расход за месяц
+  getExpensesMonth: function() { 
+    for (let key in appData.expenses) {
+      appData.expensesMonth += +appData.expenses[key]; //работает 
     }
-    appData.expensesMonth = sum;
-    return appData.expensesMonth;
   },
 
   getBudget: function() {
-  appData.budgetMonth = appData.budget + appData.incomeMonth - appData.expensesMonth;
-  appData.budgetDay = Math.floor(appData.budgetMonth / 30);
+  appData.budgetMonth = this.budget + appData.incomeMonth - appData.expensesMonth; //Доход за месяц
+  appData.budgetDay = Math.floor(appData.budgetMonth / 30); //Дневной бюджет
   },
 
   getTargetMonth: function() {
@@ -197,21 +190,22 @@ const appData = {
   changeRange: function(event) {
     console.log(event.type);
     console.log(event.target.value);
-    //appData.periodAmount.innerHTML = event.target.value;
   }
 };
 
 start.addEventListener('click', appData.start);
-//start.addEventListener('click', appData.showResult);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('change', appData.changeRange);
-//appData.getInfoDeposit();
-//выводы в консоль :
-/* console.log('Расходы за месяц: ' + appData.expensesMonth);
-console.log(appData.getStatusIncome()); */
 
-/* for (let item in appData) {
-  console.log('Свойства: ' + item + ', его значение - ' + appData[item]);
-} */
-
+//Блокировать все input
+start.addEventListener('click', () => {
+    input.setAttribute('disabled', 'disabled');
+    start.style.display = 'none';
+    restart.style.display = 'block';
+});
+restart.addEventListener('click', () => {
+    input.removeAttribute('disabled');
+    start.style.display = 'block';
+    restart.style.display = 'none';
+}); 
