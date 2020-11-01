@@ -22,6 +22,7 @@ expensesPlus = btnPlus[1],
 start = document.getElementById('start'),
 reset = document.getElementById('cancel'),
 input = document.getElementsByClassName('input');
+const allClearButton = document.querySelector("[data-all-clear]");
 
 //result
 let budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
@@ -37,10 +38,7 @@ targetMonthValue = document.getElementsByClassName('target_month-value')[0];
 let isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 };
-let leftInputField;
-
-
-
+let leftInputField = document.querySelector('.data');
 
 // переменные
 const appData = {
@@ -72,9 +70,9 @@ const appData = {
 
     //appData.getIncome();
     appData.getAddIncome();
-
-
+    appData.actionBlock();
     appData.showResult();
+    appData.reset();
   },
   showResult: function() {
     budgetMonthValue.value = appData.budgetMonth; //Доход за месяц
@@ -201,6 +199,17 @@ const appData = {
     reset.style.display = 'inline';
     incomePlus.removeEventListener('click', this.addExpensesBlock);
     expensesPlus.removeEventListener('click', this.addIncomeBlock);
+  },
+  reset: function() {
+    reset.addEventListener('click', function() {
+    start.style.display = 'inline';
+    reset.style.display = 'none';
+    let inputFields = leftInputField.querySelectorAll("input[type=text]");
+    inputFields.forEach(function(item, index) {
+      item.removeAttribute('disabled');
+      item.value = "";
+    });
+  });
   }
 };
 
@@ -208,7 +217,3 @@ start.addEventListener('click', appData.start);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('change', appData.changeRange);
-
-start.addEventListener('click', appData.start);
-
-  
