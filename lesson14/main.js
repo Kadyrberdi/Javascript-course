@@ -23,3 +23,8 @@ DomElement1.innerHTML = 'html';
 document.body.append(DomElement1);
 console.log('DomElement1: ', DomElement1);
 console.log('best: ', best);
+
+//https://developer.mozilla.org/ru/docs/Web/API/Element/innerHTML
+//https://learn.javascript.ru/document-write
+//https://rolling-scopes-school.github.io/lerachukovich-JS2020Q3/virtual-keyboard/
+//https://github.com/rolling-scopes-school/tasks/blob/master/tasks/ready-projects/virtual-keyboard.md
