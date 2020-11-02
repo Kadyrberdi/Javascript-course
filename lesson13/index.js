@@ -32,12 +32,13 @@ additionalExpensesValue = document.getElementsByClassName('additional_expenses-v
 incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
 targetMonthValue = document.getElementsByClassName('target_month-value')[0];
 
+let leftInputField = document.querySelector('.data');
+let rightInputField = document.querySelector('.result');
 
 // вспомогательная функция
 let isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 };
-let leftInputField = document.querySelector('.data');
 
 // переменные
 const appData = {
@@ -201,9 +202,13 @@ const appData = {
     reset.addEventListener('click', function() {
     start.style.display = 'inline';
     reset.style.display = 'none';
-    let inputFields = leftInputField.querySelectorAll("input[type=text]");
-    inputFields.forEach(function(item, index) {
+    let leftInputFields = leftInputField.querySelectorAll("input[type=text]");
+    leftInputFields.forEach(function(item, index) {
       item.removeAttribute('disabled');
+      item.value = "";
+    });
+    let rightInputFields = rightInputField.querySelectorAll("input[type=text]");
+    rightInputFields.forEach(function(item, index) {
       item.value = "";
     });
   });
