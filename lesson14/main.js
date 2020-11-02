@@ -19,12 +19,10 @@ best.style.padding = '50px';
 
 DomElement1 = new DomElement('.block', '100px', '100px', '255.255.255', '24px', 'Hello everybody!');
 
-DomElement1.innerHTML = 'html';
+//DomElement1.innerHTML = 'asfasfknls fa';
+//console.log(document.body.DomElement1.innerHTML);
+best.innerHTML = 'asdfasfas';
+console.log(best.innerHTML);
 document.body.append(DomElement1);
 console.log('DomElement1: ', DomElement1);
 console.log('best: ', best);
-
-//https://developer.mozilla.org/ru/docs/Web/API/Element/innerHTML
-//https://learn.javascript.ru/document-write
-//https://rolling-scopes-school.github.io/lerachukovich-JS2020Q3/virtual-keyboard/
-//https://github.com/rolling-scopes-school/tasks/blob/master/tasks/ready-projects/virtual-keyboard.md
