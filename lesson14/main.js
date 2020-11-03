@@ -1,25 +1,62 @@
-let DomElement1 = document.getElementsByClassName('div');
-let best = document.getElementById('best');
+/*
+1) СДЕЛАТЬ КЛАСС DOMELEMENT, КОТОРЫЙ СОДЕРЖИТ СВОЙСТВА:
+  - SELECTOR, 
+  - HEIGHT, 
+  - WIDTH, 
+  - BG, 
+  - FONTSIZE
+*/
 
-
-function DomElement(selector, height, width, bg, fontSize, text) {
+function DomElement(selector, height, width, bg, fontSize) {
   this.selector = selector;
   this.height = height;
   this.width = width;
   this.bg = bg;
   this.fontSize = fontSize;
-  this.text = text;
 }
+/*
+СОДЕРЖИТ МЕТОД, КОТОРЫЙ СОЗДАЕТ ЭЛЕМЕНТ НА СТРАНИЦЕ В ЗАВИСИМОСТИ ОТ УСЛОВИЯ:  
 
-best.style.height = '100px';
-best.style.width = '300px';
-best.style.backgroundColor = 'green';
-best.style.fontSize = '48px';
-best.style.color = 'white';
-best.style.padding = '50px';
+- ЕСЛИ СТРОКА SELECTOR НАЧИНАЕТСЯ С ТОЧКИ, СОЗДАЕМ DIV С КЛАССОМ
+- ЕСЛИ СТРОКА SELECTOR  НАЧИНАЕТСЯ С РЕШЕТКИ # ТО СОЗДАЕМ ПАРАГРАФ С ID
 
-DomElement1 = new DomElement('.block', '100px', '100px', '255.255.255', '24px', 'Hello Tutor!');
+пример:
+если передана строка '.block', то функция конструктор создает элемент с class="block"
+если передана строка '#best', то функция конструктор создает элемент с id =best"
+*/
 
-DomElement1.text = 'Hello Mentor!';
+DomElement.prototype.createElem = function () {
+  this.selector = prompt('Пожалуйста, введите . или #');
+  /*
+  с помощью cssText задавать стили: 
+  - высотой - height,
+  - шириной - width, 
+  - background - bg
+  - размер текста fontSize 
+  */
+  this.height = '100px';
+  this.width = '300px';
+  this.bg = 'green';
+  this.fontSize = '48px';
 
-best.innerHTML = DomElement1.text;
+  switch (this.selector) {
+    case '.':
+      let elemClass = document.body.createElement('div');
+      elemClass.classList.add('block');
+      elemClass.innerHTML = '<h1>Created Class</h1>';
+      break;
+
+    case '#':
+      let elemId = document.createIdent('p');
+      elemId.idList.add('best');
+      elemId.innerHTML = '<h2>Created ID</h2>';
+      break;
+
+    default:
+      document.write('ОШИБКА =('); // к примеру 
+  }
+};
+
+const DomElement1 = new DomElement();
+DomElement.createElem();
+
