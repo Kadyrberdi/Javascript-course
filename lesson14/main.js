@@ -34,29 +34,45 @@ DomElement.prototype.createElem = function () {
   - background - bg
   - размер текста fontSize 
   */
-  this.height = '100px';
-  this.width = '300px';
-  this.bg = 'green';
-  this.fontSize = '48px';
 
-  switch (this.selector) {
+    switch (this.selector) {
+
     case '.':
-      let elemClass = document.body.createElement('div');
-      elemClass.classList.add('block');
-      elemClass.innerHTML = '<h1>Created Class</h1>';
+      const elemClass = document.createElement('div');
+      elemClass.className = 'block';
+      this.bg = 'background: green';
+      this.fontSize = 'font-size: 50px';
+      this.height = 'height: 50vh';
+      this.width = 'width: 50vh';
+      elemClass.style.cssText = `${this.bg}; ${this.fontSize}; ${this.height}; ${this.width}; color: white;`;
+      elemClass.textContent = 'Created new Class';
+      document.body.appendChild(elemClass);
+      console.log(elemClass);
       break;
 
     case '#':
-      let elemId = document.createIdent('p');
-      elemId.idList.add('best');
-      elemId.innerHTML = '<h2>Created ID</h2>';
+      const elemId = document.createElement('p');
+      elemId.id = 'best';
+      this.bg = 'background: red';
+      this.fontSize = 'font-size: 50px';
+      this.height = 'height: 50vh';
+      this.width = 'width: 50vh';
+      elemId.style.cssText = `${this.bg}; ${this.fontSize}; ${this.height}; ${this.width}; color: white;`;
+      elemId.textContent = 'Created new Id';
+      document.body.appendChild(elemId);
+      console.log(elemId);
       break;
 
     default:
-      document.write('ОШИБКА =('); // к примеру 
+      document.write('ОШИБКА =(');
   }
 };
 
-const DomElement1 = new DomElement();
-DomElement.createElem();
+// 2) СОЗДАТЬ НОВЫЙ ОБЪЕКТ НА ОСНОВЕ КЛАССА DOMELEMENT
+const newObject = new DomElement(999, '70vh', '70vh', 'black', '35px');
+
+//3) ВЫЗВАТЬ ЕГО МЕТОД ЧТОБЫ ПОЛУЧИТЬ ЭЛЕМЕНТ НА СТРАНИЦЕ
+newObject.createElem();
+
+console.log(newObject);
 
