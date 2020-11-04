@@ -77,11 +77,18 @@ class AppData {
       return;
     } 
 
-    if (!this.isNumber(depositPercent.value) || 0 >= Number(depositPercent.value) && Number(depositPercent.value) >= 100) {
+    if (isNaN(depositPercent.value) || depositPercent.value.trim() === '' ||
+      depositPercent.value > 100 || depositPercent.value <= 0) {
+      this.changePercent.readOnly = true;
       alert('Ошибка, поле "Процент" должно быть число в диапазоне от 0 до 100!');
-      depositPercent.value = 0;
       return;
     } 
+
+    if (isNaN(depositAmount.value) || depositAmount.value.trim() === '') {
+      this.changePercent.readOnly = true;
+      alert('Введите корректное значение в поле сумма');
+      return;
+    }
 
     let allInput = document.querySelectorAll('.data input[type = text]');
     allInput.forEach(function(item) {
@@ -251,13 +258,6 @@ class AppData {
     if(this.deposit) {
       this.percentDeposit = depositPercent.value;
       this.moneyDeposit = depositAmount.value;
-     /*  do {
-      this.percentDeposit = depositPercent.value;
-      } while (!isNaN(parseFloat(this.percentDeposit)) && isFinite(this.percentDeposit) || this.percentDeposit === '');
-      do {
-      this.moneyDeposit = depositAmount.value;
-      } while (!isNaN(parseFloat(this.moneyDeposit)) && isFinite(this.moneyDeposit) || this.moneyDeposit === '');
-      this.moneyDeposit === '' || this.moneyDeposit === null; */
     }
   }
 
@@ -265,7 +265,6 @@ class AppData {
     const valueSelect = this.value;
     if (valueSelect === 'other') {
       depositPercent.style.display = 'inline-block';
-      depositPercent.value = '';
     } else {
       depositPercent.value = valueSelect;
       depositPercent.style.display = 'none';
@@ -299,12 +298,6 @@ class AppData {
     });
     depositCheck.addEventListener('change', this.depositHandler.bind(this));
 
-    /*  let addExp = [];
-    for (let i = 0; i < appData.expenses.length; i++) {
-      let element = appData.expenses[i].trim();
-      element = element.charAt(0).toUppercase() + element.substring(1).toLowerCase();
-      addExp.push(element);
-    } */
   }
 }
 
