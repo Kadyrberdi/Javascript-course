@@ -76,11 +76,10 @@ class AppData {
       start.setAttribute('disabled', 'true');
       return;
     } 
-    
-    if (!this.isNumber(depositPercent.value) || 0 >= depositPercent.value && depositPercent.value >= 100) {
-      //start.setAttribute('disabled', 'true');
+
+    if (!this.isNumber(depositPercent.value) || 0 >= Number(depositPercent.value) && Number(depositPercent.value) >= 100) {
       alert('Ошибка, поле "Процент" должно быть число в диапазоне от 0 до 100!');
-      depositPercent.value = '';
+      depositPercent.value = 0;
       return;
     } 
 
