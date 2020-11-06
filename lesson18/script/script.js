@@ -24,22 +24,24 @@ window.addEventListener('DOMContentLoaded', function() {
     
     function updateClock() {
       let timer = getTimeRemaining();
+      //const setInterval = setInterval(updateClock, 1000);
+
       
       timerHours.textContent = addZero(timer.hours);
       timerMinutes.textContent = addZero(timer.minutes);
       timerSeconds.textContent = addZero(timer.seconds);
       
       if(timer.timeRemaining > 0) {
-        setInterval(updateClock, 1000);
+        let priceSetInterval = setInterval(updateClock, 1000);
       } 
-
       if(timer.timeRemaining <= 0) {
-        clearInterval(updateClock, 1000);
+        clearInterval(priceSetInterval);
       }
+
     }    
     updateClock();
   }
 
-  countTimer('07 november 2020 02:02:00');
+  countTimer('07 november 2020 13:16:00');
 
 });
