@@ -24,7 +24,6 @@ window.addEventListener('DOMContentLoaded', function() {
     
     function updateClock() {
       let timer = getTimeRemaining();
-      //const setInterval = setInterval(updateClock, 1000);
 
       
       timerHours.textContent = addZero(timer.hours);
