@@ -32,8 +32,10 @@ window.addEventListener('DOMContentLoaded', function() {
       
       if(timer.timeRemaining > 0) {
         priceSetInterval = setInterval(updateClock, 1000);
-      } 
-      if(timer.timeRemaining <= 0) {
+      } else {
+        timerHours.textContent = '00';
+        timerMinutes.textContent = '00';
+        timerSeconds.textContent = '00';
         clearInterval(priceSetInterval);
       }
 
@@ -41,6 +43,6 @@ window.addEventListener('DOMContentLoaded', function() {
     updateClock();
   }
 
-  countTimer('06 november 2020 13:22:00');
+  countTimer('07 november 2020 02:26:00');
 
 });
