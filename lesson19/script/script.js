@@ -77,12 +77,23 @@ window.addEventListener('DOMContentLoaded', function() {
     popupBtn.forEach((elem) => {
       elem.addEventListener('click', () => {
         popup.style.display = 'block';
+        let start = Date.now();
+        let timer = setInterval(function() {
+        let timePassed = Date.now() - start;
+
+        popup.style.left = timePassed / 5 + 'px';
+
+        if (timePassed > 2000) clearInterval(timer);
+
+      }, 20);
       });
     });
 
     popupClose.addEventListener('click', () => {
       popup.style.display = 'none';
     });
+
+
   };
 
   togglePopUp();
