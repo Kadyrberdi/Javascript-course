@@ -72,20 +72,20 @@ window.addEventListener('DOMContentLoaded', function() {
   const togglePopUp = () => {
     const popup = document.querySelector('.popup'),
           popupBtn = document.querySelectorAll('.popup-btn'),
-          popupClose = document.querySelector('.popup-close');
+          popupClose = document.querySelector('.popup-close'),
+          popupContent = document.querySelector('.popup-content');
           
     popupBtn.forEach((elem) => {
+      let count = 0;
       elem.addEventListener('click', () => {
-        popup.style.display = 'block';
-        let start = Date.now();
-        let timer = setInterval(function() {
-        let timePassed = Date.now() - start;
-
-        popup.style.left = timePassed / 5 + 'px';
-
-        if (timePassed > 2000) clearInterval(timer);
-
-      }, 20);
+        count++;
+        let timer = setTimeout(function() {
+          popup.style.display = 'block';/* 
+          let start = Date.now();
+          popup.style.top = count * 2 + 'px';
+          popup.style.left = count * 2 + 'px'; */
+          clearTimeout(timer);
+      }, 10);
       });
     });
 

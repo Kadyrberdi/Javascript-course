@@ -806,6 +806,9 @@ footer .web {
   margin-bottom: 3rem;
   margin-top: 1.5rem
 }
+.popup {
+  position: relative;
+}
 
 .popup .popup-close {
   position: absolute;
