@@ -790,7 +790,7 @@ footer .web {
 }
 
 .popup .popup-content {
-  position: fixed;
+  position: relative;
   text-align: center;
   width: 40rem;
   left: 38%;
@@ -805,9 +805,6 @@ footer .web {
   width: 100%;
   margin-bottom: 3rem;
   margin-top: 1.5rem
-}
-.popup {
-  position: relative;
 }
 
 .popup .popup-close {

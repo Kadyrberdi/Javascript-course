@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', function() {
     updateClock();
   }
 
-  countTimer('10 november 2020 02:26:00');
+  countTimer('07 november 2020 02:26:00');
 
 
   //menu
@@ -76,22 +76,26 @@ window.addEventListener('DOMContentLoaded', function() {
           popupContent = document.querySelector('.popup-content');
           
     popupBtn.forEach((elem) => {
-      let count = 0;
       elem.addEventListener('click', () => {
-        count++;
-        let timer = setTimeout(function() {
-          popup.style.display = 'block';/* 
-          let start = Date.now();
-          popup.style.top = count * 2 + 'px';
-          popup.style.left = count * 2 + 'px'; */
-          clearTimeout(timer);
-      }, 10);
+        popup.style.display = 'block';
+        let count = 0;
+        let animatePopup = function() {
+          count++;
+          popupContent.style.left = count * 20 + 'px';
+          popupContent.style.top = count * 5 + 'px';
+          if (count < 30) {
+            setTimeout(animatePopup, 10);
+          }
+        };
+        animatePopup();
       });
     });
 
     popupClose.addEventListener('click', () => {
       popup.style.display = 'none';
     });
+
+
 
 
   };
