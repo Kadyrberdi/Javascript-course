@@ -79,18 +79,30 @@ window.addEventListener('DOMContentLoaded', function() {
       elem.addEventListener('click', () => {
         popup.style.display = 'block';
         let count = 0;
-        let animatePopup = function() {
-          count++;
-          popupContent.style.left = count * 20 + 'px';
-          popupContent.style.top = count * 5 + 'px';
-          if (count < 30) {
-            setTimeout(animatePopup, 10);
-          }
-        };
-        animatePopup();
+        if (screen.width > 768) {
+          let animatePopup = function() {
+            count++;
+            popupContent.style.left = count * 20 + 'px';
+            popupContent.style.top = count * 5 + 'px';
+            if (count < 15 && screen.width > 768) {
+              setTimeout(animatePopup, 10);
+            }
+          };
+          animatePopup();
+        }
+        if (screen.width > 920) {
+          let animatePopup = function() {
+            count++;
+            popupContent.style.left = count * 20 + 'px';
+            popupContent.style.top = count * 5 + 'px';
+            if (count < 30 && screen.width > 768) {
+              setTimeout(animatePopup, 10);
+            }
+          };
+          animatePopup();
+        }
       });
     });
-
     popupClose.addEventListener('click', () => {
       popup.style.display = 'none';
     });
