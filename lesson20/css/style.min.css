@@ -397,6 +397,10 @@ main a {
   display: block
 }
 
+.d-none {
+  display: none;
+}
+
 @media (max-width:1024px) {
   .portfolio-content {
     height: 650px
