@@ -90,9 +90,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (screen.width > 920) {
                     const animatePopup = function() {
                         count++;
-                        popupContent.style.left = count * 20 + 'px';
-                        popupContent.style.top = count * 5 + 'px';
-                        if (count < 30 && screen.width > 768) {
+                        popupContent.style.left = count * 9 + 'px';
+                        popupContent.style.top = count * 3 + 'px';
+                        if (count < 80 && screen.width > 768) {
                             setTimeout(animatePopup, 60);
                         }
                     };
