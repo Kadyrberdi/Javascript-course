@@ -168,6 +168,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 let li = document.createElement('li');
                 li.classList.add('dot');
                 dots.appendChild(li);
+                dots.firstChild.classList.add('dot-active');
                 console.log('li: ', li);
             }
         };
