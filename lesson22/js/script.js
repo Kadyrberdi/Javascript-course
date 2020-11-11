@@ -15,6 +15,7 @@ class Todo {
 
     adToStorage() {
         localStorage.setItem('toDoList', JSON.stringify([...this.todoData]));
+        this.input.value = '';
     }
 
     render() {
@@ -62,8 +63,6 @@ class Todo {
 
     deleteItem(elem) {
         this.todoData.forEach((item) => {
-            console.log('item.key: ', item.key);
-            console.log('elem.key: ', elem.key);
             if (item.key === elem.key) {
                 this.todoData.delete(item.key);
             }
@@ -74,9 +73,11 @@ class Todo {
     completedItem(elem) {
         this.todoData.forEach((item) => {
             if (item.key === elem.key) {
-                console.log('item: ', item);
                 item.completed = true;
-            }
+                //this.todoCompleted.append(item);
+            } /* else {
+                this.todoList.append(item);
+            } */
         });
         this.render();
     }
