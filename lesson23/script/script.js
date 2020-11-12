@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 window.addEventListener('DOMContentLoaded', () => {
 
 
@@ -169,7 +170,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 li.classList.add('dot');
                 dots.appendChild(li);
                 dots.firstChild.classList.add('dot-active');
-                console.log('li: ', li);
             }
         };
         createDot();
@@ -254,5 +254,29 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     slider();
+
+    // меняем картинки в блоке с картинками Наша Команда
+
+    const img = document.getElementsByClassName('command__photo');
+    for (let i = 0; i < img.length; i++) {
+        let oldSrc = img[i].src;
+
+        img[i].addEventListener('mouseover', (e) => {
+            e.target.src = e.target.dataset.img;
+        });
+        img[i].addEventListener('mouseout', (e) => {
+            e.target.src = oldSrc;
+        });
+    }
+
+    //валидация в калькуляторе
+
+    const calcItems = document.getElementsByClassName('calc-item');
+
+    for (let i = 1; i < calcItems.length ; i++) {
+        calcItems[i].addEventListener('input', () => {
+            calcItems[i].value = calcItems[i].value.replace(/\D/g, '');
+        });
+    }
 
 });
