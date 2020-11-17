@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         updateClock();
     }
-    countTimer('07 november 2020 02:26:00');
+    countTimer('30 november 2020 02:26:00');
 
 
     //menu
