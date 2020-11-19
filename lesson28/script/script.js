@@ -327,7 +327,6 @@ window.addEventListener('DOMContentLoaded', () => {
     calc(100);
 
     //send-ajax-form
-
     const sendForm = () => {
         const errorMessage = 'Что то пошло не так ...',
             loadMessage = 'Загрузка ...',
@@ -352,19 +351,19 @@ window.addEventListener('DOMContentLoaded', () => {
                 formData.forEach((val, key) => {
                     body[key] = val;
                 });   
-                
-                postData()
-                    .then(() => {
-                        statusMessage.textContent = successMessage
-                    })
-                    .catch(() => {
-                        statusMessage.textContent = errorMessage
-                    });
-
                 //4) После отправки инпуты должны очищаться
                 for (let i = 0; i < inputs.length; i++) {
                     inputs[i].value = '';
                 }
+                
+                postData(body)
+                    .then(() => {
+                        statusMessage.textContent = successMessage
+                    })
+                    .catch((error) => {
+                        statusMessage.textContent = errorMessage
+                        console.log(error);
+                    });
             });
         }
 
@@ -378,7 +377,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     if (request.status === 200) {
                         resolve();
                     } else {
-                        reject(request.status);
+                        reject(request.statusText);
                     }
                 });
 
