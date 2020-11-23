@@ -1,0 +1,23 @@
+{
+  "name": "glo3d",
+  "version": "1.0.0",
+  "scripts": {
+    "watch": "webpack --watch",
+    "dev": "webpack-dev-server --open --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.7",
+    "@babel/preset-env": "^7.12.7",
+    "babel-loader": "^8.2.1",
+    "path": "^0.12.7",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1"
+  },
+  "dependencies": {},
+  "description": ""
+}
